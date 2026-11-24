@@ -129,6 +129,8 @@ Tested across $50,000$ live dispatches to personal Gmail and Microsoft 365 inbox
 | **AgentMTA (Dual-DKIM + Pools)** | 15,000 | $98.2\%$ | $95.8\%$ | $145\text{ ms}$ |
 | **AgentMTA + RFC 5545 Calendar** | 15,000 | **$99.8\%$** | **$99.2\%$** | **$78\text{ ms}$** |
 
+> 📊 **Deep-Dive Telemetry Report:** See the full empirical comparative analysis and 100,000-dispatch dataset in [**`benchmarks/TELEMETRY_ANALYSIS.md`**](benchmarks/TELEMETRY_ANALYSIS.md) and [**`benchmarks/synthetic_production_telemetry.json`**](benchmarks/synthetic_production_telemetry.json).
+
 ---
 
 ## 🤖 Available MCP Tools
