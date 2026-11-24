@@ -103,6 +103,12 @@ Cold sending domains suffer from trust penalties ($0+0=0$). AgentMTA signs every
 1. **Author Signature:** `d=agentdomain.com` (Satisfies 100% DMARC author alignment).
 2. **Infrastructure Anchor:** `d=trusted-anchor.com` (Inherits proven, high-reputation Google Postmaster score).
 
+### 3. Multi-Hop Authenticated Received Chain (RFC 8617 ARC $i=1 \to i=2$)
+Single-hop direct dispatches (`Agent VPS -> Target MX`) trigger cold-sender Bayesian penalties. AgentMTA incorporates a multi-hop pipeline:
+* **Hop 1 ($i=1$):** Local agent injection signs the custody transit with `ARC-Authentication-Results: i=1; cv=none`.
+* **Hop 2 ($i=2$):** Egress KumoMTA validates the custody chain and seals the header with `cv=pass`.
+* **The Bypass:** Mailbox providers (Gmail/Outlook) classify `cv=pass` as legitimate multi-tenant enterprise transit rather than unauthenticated direct cold blasts.
+
 ### 3. Wire-Level Byte-Slice Normalization (Anti-Smuggling)
 Enforces a strict byte-slice finite state automaton (DFA) directly on the wire buffer:
 $$\Sigma = \{0\text{x0D}, 0\text{x0A}, 0\text{x2E}\} \implies \text{Delimiter} = [ \backslash r \backslash n . \backslash r \backslash n ]$$
