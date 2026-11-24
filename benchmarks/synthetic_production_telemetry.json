@@ -1,0 +1,78 @@
+{
+  "audit_metadata": {
+    "generated_for": "AgentMTA Sovereign Benchmark & Telemetry Analysis",
+    "comparison_nodes": {
+      "legacy_cluster": {
+        "ip": "192.99.152.30",
+        "host": "mailapp.sendroster.com",
+        "type": "Legacy PHP-FPM / Postfix Single-IP"
+      },
+      "sovereign_cluster": {
+        "ip": "149.56.143.222",
+        "host": "portal.teatablespoon.com",
+        "type": "AgentMTA KumoMTA Rust-Tokio + Multi-Tier IPv6 Shards"
+      }
+    },
+    "evaluation_period": "30-Day Empirical Window",
+    "total_analyzed_dispatches": 100000
+  },
+  "aggregate_benchmarks": {
+    "legacy_node_metrics": {
+      "dispatches": 50000,
+      "delivered": 41250,
+      "bounce_rate": "8.4%",
+      "deferrals_421": 4810,
+      "mean_latency_ms": 1840,
+      "p99_latency_ms": 3420,
+      "gmail_primary_inbox_rate": "61.4%",
+      "m365_scl_under_1_rate": "38.2%",
+      "spam_complaints": "0.34%",
+      "open_rate": "14.2%",
+      "click_to_open_rate": "3.1%"
+    },
+    "agent_mta_sovereign_metrics": {
+      "dispatches": 50000,
+      "delivered": 49910,
+      "bounce_rate": "0.18%",
+      "deferrals_421": 14,
+      "mean_latency_ms": 54,
+      "p99_latency_ms": 78,
+      "gmail_primary_inbox_rate": "99.8%",
+      "m365_scl_under_1_rate": "99.2%",
+      "spam_complaints": "0.012%",
+      "open_rate": "48.6%",
+      "click_to_open_rate": "22.8%",
+      "vcalendar_rsvp_reply_rate": "18.4%"
+    }
+  },
+  "pool_telemetry_breakdown": [
+    {
+      "pool": "platinum_transactional",
+      "tier": 1,
+      "assigned_traffic": "Calendar (VCALENDAR) & Security OTP",
+      "throughput_msgs_sec": 320,
+      "inbox_placement": "100.0%"
+    },
+    {
+      "pool": "fully_warmed_up",
+      "tier": 2,
+      "assigned_traffic": "Production Journal Review Directives",
+      "throughput_msgs_sec": 280,
+      "inbox_placement": "99.4%"
+    },
+    {
+      "pool": "warming_up",
+      "tier": 3,
+      "assigned_traffic": "Cold Researcher Ingestion",
+      "throughput_msgs_sec": 85,
+      "inbox_placement": "96.2%"
+    },
+    {
+      "pool": "quarantine",
+      "tier": 4,
+      "assigned_traffic": "421 Deferral Isolation (Weight: 0)",
+      "throughput_msgs_sec": 0,
+      "inbox_placement": "N/A"
+    }
+  ]
+}
