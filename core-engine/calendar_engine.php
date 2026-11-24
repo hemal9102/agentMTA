@@ -18,10 +18,10 @@ class CalendarEngine {
      *
      * @param array $params [
      *   'ref_code'    => string (e.g. '81181' or 'TX-964733'),
-     *   'domain'      => string (e.g. 'paripex.com' or 'worldwidejournals.in'),
+     *   'domain'      => string (e.g. 'journal-alpha.org' or 'journal-network.org'),
      *   'subject'     => string (Subject line to match 1:1),
      *   'organizer_name'  => string (e.g. 'Editorial Office'),
-     *   'organizer_email' => string (e.g. 'editor@paripex.com'),
+     *   'organizer_email' => string (e.g. 'editor@journal-alpha.org'),
      *   'portal_url'  => string (Dynamic upload or portal link),
      *   'deadline_days_ahead' => int (default: 5 days from now)
      * ]
@@ -29,7 +29,7 @@ class CalendarEngine {
      */
     public static function buildEvent(array $params) {
         $refCode = !empty($params['ref_code']) ? preg_replace('/[^a-zA-Z0-9_\-]/', '', $params['ref_code']) : strtoupper(substr(md5(uniqid()), 0, 8));
-        $domain = !empty($params['domain']) ? strtolower($params['domain']) : 'worldwidejournals.in';
+        $domain = !empty($params['domain']) ? strtolower($params['domain']) : 'journal-network.org';
         $subject = !empty($params['subject']) ? trim(preg_replace('/[\r\n]+/', ' ', $params['subject'])) : "Editorial Review Cutoff — #TX-{$refCode}";
         $orgName = !empty($params['organizer_name']) ? addslashes($params['organizer_name']) : 'Editorial Office';
         $orgEmail = !empty($params['organizer_email']) ? strtolower($params['organizer_email']) : "editor@{$domain}";

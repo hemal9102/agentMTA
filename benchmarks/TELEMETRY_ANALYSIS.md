@@ -2,7 +2,7 @@
 **Empirical Comparison: Legacy Single-Node Dispatch vs. AgentMTA Sovereign Egress**
 
 *Author: Hemal Shah ([@hemal9102](https://github.com/hemal9102))*  
-*Target Environments: `192.99.152.30` (`mailapp.sendroster.com`) vs. `149.56.143.222` (`portal.teatablespoon.com`)*  
+*Target Environments: `198.51.100.30` (`mailapp.legacy-cluster.net`) vs. `198.51.100.42` (`portal.relay-anchor.net`)*  
 *Dataset: 100,000 Dispatched Messages Across a 30-Day Evaluation Window*
 
 ---
@@ -10,14 +10,14 @@
 ## 1. Executive Summary
 
 This benchmark compares the performance, deliverability, and latency characteristics of two fundamentally distinct egress architectures:
-1. **The Legacy Node (`192.99.152.30` - `mailapp.sendroster.com`):** Standard single-IP PHP-FPM / Postfix dispatch running traditional static HTML outbound.
-2. **The Sovereign Cluster (`149.56.143.222` - `portal.teatablespoon.com`):** **AgentMTA** running KumoMTA (Rust/Tokio event loops), 4-tier dynamic IPv6 sharding (`2607:5300:401:7d00::/56`), Dual-DKIM anchoring, and RFC 5545 `VCALENDAR` deadline synthesis.
+1. **The Legacy Node (`198.51.100.30` - `mailapp.legacy-cluster.net`):** Standard single-IP PHP-FPM / Postfix dispatch running traditional static HTML outbound.
+2. **The Sovereign Cluster (`198.51.100.42` - `portal.relay-anchor.net`):** **AgentMTA** running KumoMTA (Rust/Tokio event loops), 4-tier dynamic IPv6 sharding (`2607:5300:401:7d00::/56`), Dual-DKIM anchoring, and RFC 5545 `VCALENDAR` deadline synthesis.
 
 ---
 
 ## 2. Core Telemetry & Benchmark Matrix
 
-| Metric | Legacy Node (`sendroster`) | AgentMTA Sovereign (`portal.teatablespoon`) | Net Architectural Delta |
+| Metric | Legacy Node (`legacy-cluster`) | AgentMTA Sovereign (`portal.relay-anchor`) | Net Architectural Delta |
 | :--- | :---: | :---: | :---: |
 | **Total Evaluated Volume** | 50,000 | 50,000 | Baseline |
 | **Mean Egress Latency (p50)** | 840 ms | **24 ms** | **35x Faster** |
@@ -35,8 +35,8 @@ This benchmark compares the performance, deliverability, and latency characteris
 ## 3. Deep-Dive: Root Causes of Deliverability Divergence
 
 ### A. The 421 Rate-Limiting & Deferral Trap
-* **On Legacy `sendroster` (`192.99.152.30`):** Bulk dispatches forced all concurrent TCP connections through a single physical IPv4 socket. Receiving edge MX filters at Google and Microsoft detected burst velocity and triggered `421 4.7.28 [TBR] Connection rate limit exceeded`, forcing multi-hour queue backlogs and sender reputation drops.
-* **On AgentMTA (`149.56.143.222`):** Traffic is split across isolated 4-tier pools. Cold traffic is throttled via deterministic Lua rate-limit tokens, while transactional traffic is routed via clean IPv6 `/56` subnets (`ip_lookup_strategy = 'Ipv6ThenIpv4'`), eliminating single-IP socket saturation.
+* **On Legacy `legacy-cluster` (`198.51.100.30`):** Bulk dispatches forced all concurrent TCP connections through a single physical IPv4 socket. Receiving edge MX filters at Google and Microsoft detected burst velocity and triggered `421 4.7.28 [TBR] Connection rate limit exceeded`, forcing multi-hour queue backlogs and sender reputation drops.
+* **On AgentMTA (`198.51.100.42`):** Traffic is split across isolated 4-tier pools. Cold traffic is throttled via deterministic Lua rate-limit tokens, while transactional traffic is routed via clean IPv6 `/56` subnets (`ip_lookup_strategy = 'Ipv6ThenIpv4'`), eliminating single-IP socket saturation.
 
 ### B. Why Open Rates Jumped from 14.2% to 48.6%
 1. **Bypassing the Promotions Tab:** Traditional marketing templates trigger Google SpamBrain's commercial heuristic classifiers. 

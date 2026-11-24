@@ -7,7 +7,7 @@
 DKIM_DIR="/opt/kumomta/etc/dkim"
 DOMAINS_FILE="/root/all_custom_domains.txt"
 OUTPUT_DNS_LEDGER="/root/MASTER_DNS_RECORDS_FOR_ALL_DOMAINS.txt"
-SERVER_IP=$(curl -s -4 ifconfig.me || echo "149.56.143.222")
+SERVER_IP=$(curl -s -4 ifconfig.me || echo "198.51.100.42")
 
 mkdir -p "$DKIM_DIR"
 > "$OUTPUT_DNS_LEDGER"

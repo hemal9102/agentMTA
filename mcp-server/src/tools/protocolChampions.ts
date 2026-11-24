@@ -92,7 +92,7 @@ export function buildDsnReport(params: DsnReportParams): {
   const boundary = `====_DSN_${Date.now()}_====`;
   const statusCode = params.statusCode || '2.1.5 (Delivered successfully)';
   const action = params.action || 'delivered';
-  const mta = params.reportingMta || 'dns; mail.worldwidejournals.in';
+  const mta = params.reportingMta || 'dns; mail.journal-network.org';
 
   const rawReport = [
     `--${boundary}`,

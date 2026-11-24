@@ -72,7 +72,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           properties: {
             recipientEmail: { type: 'string', description: 'Recipient target email' },
             senderDomain: { type: 'string', description: 'Authenticated sender domain (e.g. journexa.store)' },
-            serviceName: { type: 'string', description: 'Service brand title (e.g. Paripex Portal Auth)' },
+            serviceName: { type: 'string', description: 'Service brand title (e.g. JournalAlpha Portal Auth)' },
             actionName: { type: 'string', description: 'Purpose (e.g. Security Login PIN)' },
             tokenLength: { type: 'number', enum: [6, 8], description: 'Number of digits (default: 6)' },
             expiryMinutes: { type: 'number', description: 'Token expiration window in minutes (default: 10)' },
@@ -100,7 +100,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         inputSchema: {
           type: 'object',
           properties: {
-            domain: { type: 'string', description: 'Domain name to inspect (e.g. paripex.com)' },
+            domain: { type: 'string', description: 'Domain name to inspect (e.g. journal-alpha.org)' },
           },
           required: ['domain'],
         },
@@ -150,7 +150,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           properties: {
             name: { type: 'string', description: 'Unique identifier for source (e.g. source_node_05)' },
             sourceAddress: { type: 'string', description: 'IPv4 Address (e.g. 51.222.2.245)' },
-            ehloDomain: { type: 'string', description: 'FCrDNS EHLO domain (e.g. node-51-222-2-245.egress.worldwidejournals.in)' },
+            ehloDomain: { type: 'string', description: 'FCrDNS EHLO domain (e.g. node-51-222-2-245.egress.journal-network.org)' },
             category: {
               type: 'string',
               enum: ['platinum_transactional', 'fully_warmed_up', 'warming_up', 'quarantine'],

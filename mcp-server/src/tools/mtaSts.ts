@@ -29,8 +29,8 @@ export function generateMtaStsPolicy(
 
   const defaultMx = mxList && mxList.length > 0 ? mxList : [
     `mail.${cleanDomain}`,
-    'mail.paripex.com',
-    'mail.worldwidejournals.in',
+    'mail.journal-alpha.org',
+    'mail.journal-network.org',
   ];
 
   const uniqueMx = Array.from(new Set(defaultMx.map(h => h.toLowerCase().trim())));

@@ -6,11 +6,11 @@ local kumo = require 'kumo'
 --   - Zero Hardcoded IPs in Lua (Reads /opt/kumomta/etc/policy/dynamic_pools.json)
 --   - Trap 1 Fix: List-Quality Gated Overflow (Cold outreach blocked from .222)
 --   - Micro-Patch 1: Redis TTL Dynamic Counters per IP
---   - Trap 4 Fix: X-Teatablespoon-UUID Extraction & Webhook Propagation
+--   - Trap 4 Fix: X-RelayAnchor-UUID Extraction & Webhook Propagation
 -- =========================================================================
 
-local PRIMARY_IPV4_EHLO = 'mail.paripex.com'
-local WEBHOOK_URL = 'https://teatablespoon.com/admin/mail/kumomta_webhook.php'
+local PRIMARY_IPV4_EHLO = 'mail.journal-alpha.org'
+local WEBHOOK_URL = 'https://relay-anchor.net/admin/mail/kumomta_webhook.php'
 local CONFIG_FILE = '/opt/kumomta/etc/policy/dynamic_pools.json'
 
 -- In-Memory Cached Topology (Loaded at startup & refreshed on signal)
@@ -75,7 +75,7 @@ kumo.on('get_egress_source', function(source_name)
   -- Guaranteed Fallback to Primary .222
   return kumo.make_egress_source {
     name = 'source_ipv4_primary',
-    source_address = '149.56.143.222',
+    source_address = '198.51.100.42',
     ehlo_domain = PRIMARY_IPV4_EHLO,
   }
 end)
@@ -101,7 +101,7 @@ kumo.on('get_egress_pool', function(pool_name)
 
   -- Safe Fallback
   return kumo.make_egress_pool {
-    name = 'pool_family_paripex',
+    name = 'pool_family_journal-alpha',
     entries = {
       { name = 'source_ipv4_primary', weight = 1 }
     },
@@ -178,7 +178,7 @@ local function resolve_family_code(domain)
   end
 
   -- 2. Fallback brand heuristics
-  if d:find('paripex') then return 'paripex' end
+  if d:find('journal-alpha') then return 'journal-alpha' end
   if d:find('gjra') or d:find('globaljournal') then return 'gjra' end
   if d:find('appliedresearch') or d:find('ijsr') or d:find('ijar') then return 'ijar' end
   return 'wwj'
@@ -198,7 +198,7 @@ kumo.on('smtp_server_message_received', function(msg)
   local pool_name = 'pool_family_' .. fam_code
 
   -- Extract Immutable UUID (Trap 4)
-  local uuid = msg:get_first_named_header_value('X-Teatablespoon-UUID')
+  local uuid = msg:get_first_named_header_value('X-RelayAnchor-UUID')
   if uuid then
     msg:set_meta('internal_uuid', uuid)
   end
@@ -245,7 +245,7 @@ kumo.on('smtp_server_message_received', function(msg)
   msg:remove_all_named_headers('X-Target-Pool')
   msg:remove_all_named_headers('X-Engagement-Tier')
   msg:remove_all_named_headers('X-Campaign-ID')
-  msg:remove_all_named_headers('X-Teatablespoon-UUID')
+  msg:remove_all_named_headers('X-RelayAnchor-UUID')
   msg:remove_all_named_headers('X-STO')
   msg:remove_all_named_headers('X-PHP-Originating-Script')
   msg:remove_all_named_headers('X-Source')
@@ -298,7 +298,7 @@ kumo.on('smtp_server_message_received', function(msg)
   else
     -- Bulk / Commercial Lane: RFC 8058 One-Click List-Unsubscribe
     if rcpt_email ~= '' then
-      local unsub_url = 'https://teatablespoon.com/unsubscribe?e=' .. rcpt_email
+      local unsub_url = 'https://relay-anchor.net/unsubscribe?e=' .. rcpt_email
       local unsub_mail = 'mailto:unsubscribe@' .. domain .. '?subject=Unsubscribe'
       if not msg:get_first_named_header_value('List-Unsubscribe') then
         msg:append_header('List-Unsubscribe', '<' .. unsub_url .. '>, <' .. unsub_mail .. '>')
@@ -346,24 +346,24 @@ kumo.on('smtp_server_message_received', function(msg)
   -- Signs author DKIM ONLY if public DNS TXT record kumo._domainkey.<domain> exists
   -- =========================================================================
   local VERIFIED_DKIM_DOMAINS = {
-    ['paripex.com'] = true,
-    ['mail.paripex.com'] = true,
-    ['worldwidejournals.com'] = true,
-    ['worldwidejournals.org'] = true,
-    ['worldwidejournals.in'] = true,
-    ['worldwidejournals.co.in'] = true,
-    ['worldwidejournals.org.in'] = true,
-    ['submission.worldwidejournals.org'] = true,
-    ['submission.worldwidejournals.in'] = true,
+    ['journal-alpha.org'] = true,
+    ['mail.journal-alpha.org'] = true,
+    ['journal-network.com'] = true,
+    ['journal-network.org'] = true,
+    ['journal-network.org'] = true,
+    ['journal-network.org'] = true,
+    ['journal-network.org.in'] = true,
+    ['submission.journal-network.org'] = true,
+    ['submission.journal-network.org'] = true,
     ['gjra.in'] = true,
     ['globaljournalforresearchanalysis.com'] = true,
     ['indianjournalofappliedresearch.com'] = true,
-    ['teatablespoon.com'] = true,
+    ['relay-anchor.net'] = true,
     ['notification.wepublishandpropel.com'] = true,
     ['wepublishandpropel.com'] = true,
-    ['notification.paripexindianjournalofresearch.com'] = true,
-    ['email.paripexindianjournalofresearch.com'] = true,
-    ['paripexindianjournalofresearch.com'] = true,
+    ['notification.journal-alphaindianjournalofresearch.com'] = true,
+    ['email.journal-alphaindianjournalofresearch.com'] = true,
+    ['journal-alphaindianjournalofresearch.com'] = true,
   }
 
   local is_verified_dkim = false
@@ -424,15 +424,15 @@ kumo.on('smtp_server_message_received', function(msg)
   -- =========================================================================
   -- DUAL DKIM CRYPTOGRAPHIC ANCHORING (Netcore / Enterprise MUA Parity)
   -- Signature 1: Primary Brand Identity (d=domain, s=kumo)
-  -- Signature 2: Infrastructure Provider Identity (d=teatablespoon.com, s=kumo)
+  -- Signature 2: Infrastructure Provider Identity (d=relay-anchor.net, s=kumo)
   -- If author domain has cold/volatile reputation, Google falls back to the
   -- grandfathered infrastructure ESP signature to pass provisional inbox trust.
   -- =========================================================================
-  if domain ~= 'teatablespoon.com' then
-    local infra_key_file = '/opt/kumomta/etc/dkim/teatablespoon.com.key'
+  if domain ~= 'relay-anchor.net' then
+    local infra_key_file = '/opt/kumomta/etc/dkim/relay-anchor.net.key'
     local infra_status, infra_signer = pcall(function()
       return kumo.dkim.rsa_sha256_signer {
-        domain = 'teatablespoon.com',
+        domain = 'relay-anchor.net',
         selector = 'kumo',
         key = infra_key_file,
         headers = {

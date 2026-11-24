@@ -3,13 +3,13 @@
     "generated_for": "AgentMTA Sovereign Benchmark & Telemetry Analysis",
     "comparison_nodes": {
       "legacy_cluster": {
-        "ip": "192.99.152.30",
-        "host": "mailapp.sendroster.com",
+        "ip": "198.51.100.30",
+        "host": "mailapp.legacy-cluster.net",
         "type": "Legacy PHP-FPM / Postfix Single-IP"
       },
       "sovereign_cluster": {
-        "ip": "149.56.143.222",
-        "host": "portal.teatablespoon.com",
+        "ip": "198.51.100.42",
+        "host": "portal.relay-anchor.net",
         "type": "AgentMTA KumoMTA Rust-Tokio + Multi-Tier IPv6 Shards"
       }
     },

@@ -3,15 +3,15 @@ local kumo = require 'kumo'
 -- =========================================================================
 -- AUTONOMOUS MAILOPS KUMOMTA POLICY (ENTERPRISE EDITION WITH MULTI-FAMILY EHLO)
 -- Dynamic Family EHLO Mapping:
---   • Worldwide Journals Group -> mail.worldwidejournals.in
---   • Paripex Group            -> mail.paripex.com
+--   • Worldwide Journals Group -> mail.journal-network.org
+--   • JournalAlpha Group            -> mail.journal-alpha.org
 --   • GJRA Group               -> mail.gjra.in
 --   • IJAR / IJSR Group        -> mail.indianjournalofappliedresearch.com
 -- Dual-Lane Architecture: Instant OTP Lane (<1s) & Organic Marketing Lane
 -- =========================================================================
 
-local DEFAULT_PRIMARY_MAIL_HOST = 'mail.worldwidejournals.in'
-local WEBHOOK_URL = 'https://teatablespoon.com/admin/mail/kumomta_webhook.php'
+local DEFAULT_PRIMARY_MAIL_HOST = 'mail.journal-network.org'
+local WEBHOOK_URL = 'https://relay-anchor.net/admin/mail/kumomta_webhook.php'
 
 -- 1. ESMTP LISTENER: Accepts local loopback connections on port 2525
 kumo.on('init', function()
@@ -101,9 +101,9 @@ local function resolve_family_ehlo(domain)
   if not domain then return DEFAULT_PRIMARY_MAIL_HOST end
   local d = domain:lower()
 
-  -- Paripex Group
-  if d:find('paripex') then
-    return 'mail.paripex.com'
+  -- JournalAlpha Group
+  if d:find('journal-alpha') then
+    return 'mail.journal-alpha.org'
   end
 
   -- GJRA Group
@@ -117,7 +117,7 @@ local function resolve_family_ehlo(domain)
   end
 
   -- Worldwide Journals Group (and default fallback)
-  return 'mail.worldwidejournals.in'
+  return 'mail.journal-network.org'
 end
 
 -- 3. PER-SENDER CRYPTOGRAPHIC DKIM SIGNING & FAST-TRACK OTP CLASSIFICATION

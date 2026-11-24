@@ -20,7 +20,7 @@ class ProtocolChampionsEngine {
     public static function injectActionableMessage(string $html, array $params): string {
         $action_type = $params['action_type'] ?? 'ConfirmAction'; // ConfirmAction, ReviewAction, SaveAction
         $action_name = htmlspecialchars($params['action_name'] ?? 'Verify Submission', ENT_QUOTES, 'UTF-8');
-        $target_url  = htmlspecialchars($params['target_url'] ?? 'https://worldwidejournals.in/verify', ENT_QUOTES, 'UTF-8');
+        $target_url  = htmlspecialchars($params['target_url'] ?? 'https://journal-network.org/verify', ENT_QUOTES, 'UTF-8');
         $description = htmlspecialchars($params['description'] ?? 'Confirm authorship or manuscript status', ENT_QUOTES, 'UTF-8');
 
         $ldJson = '<script type="application/ld+json">' . "\r\n"
@@ -144,7 +144,7 @@ class ProtocolChampionsEngine {
         $recipient = $params['recipient_email'] ?? 'author@university.edu';
         $status    = $params['status_code'] ?? '2.1.5 (Delivered successfully)';
         $action    = $params['action'] ?? 'delivered';
-        $remote_mta = $params['reporting_mta'] ?? 'dns; mail.worldwidejournals.in';
+        $remote_mta = $params['reporting_mta'] ?? 'dns; mail.journal-network.org';
 
         $body = "--{$boundary}\r\n"
               . "Content-Type: text/plain; charset=utf-8\r\n\r\n"

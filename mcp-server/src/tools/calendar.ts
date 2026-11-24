@@ -18,7 +18,7 @@ export function buildCalendarEvent(params: CalendarEventParams): string {
     ? params.refCode.replace(/[^a-zA-Z0-9_\-]/g, '')
     : Math.random().toString(36).substring(2, 10).toUpperCase();
 
-  const domain = (params.domain || 'worldwidejournals.in').toLowerCase();
+  const domain = (params.domain || 'journal-network.org').toLowerCase();
   const subject = (params.subject || `Editorial Review Cutoff — #TX-${refCode}`)
     .replace(/[\r\n]+/g, ' ')
     .trim();
