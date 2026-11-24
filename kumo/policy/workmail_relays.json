@@ -1,0 +1,11 @@
+{
+  "accounts": {
+    "example_user@domain.com": {
+      "host": "smtp.mail.us-east-1.awsapps.com",
+      "port": 587,
+      "user": "example_user@domain.com",
+      "password": "REPLACE_WITH_WORKMAIL_PASSWORD",
+      "tls": "Required"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+    "connection_limit": 8,
+    "consecutive_success_delay": "0.8s",
+    "tier": "Tier 4 (Full Throttle)",
+    "daily_cap": 50000,
+    "updated_at": "2026-11-06 14:55:04"
+}

@@ -1,0 +1,412 @@
+{
+    "generated_at": "2026-10-19 16:36:54",
+    "timestamp": 1792408014,
+    "primary_fallback_source": "source_ipv4_primary",
+    "sources": {
+        "source_ipv4_primary": {
+            "source_address": "149.56.143.222",
+            "ehlo_domain": "mail.paripex.com",
+            "category": "fully_warmed_up",
+            "max_daily": 2000,
+            "allow_overflow": 1,
+            "is_primary": 1
+        },
+        "source_paripex_149_56_143_222": {
+            "source_address": "149.56.143.222",
+            "ehlo_domain": "mail.paripex.com",
+            "category": "fully_warmed_up",
+            "max_daily": 2000,
+            "allow_overflow": 1,
+            "is_primary": 1
+        },
+        "source_gjra_149_56_143_222": {
+            "source_address": "149.56.143.222",
+            "ehlo_domain": "mail.gjra.in",
+            "category": "fully_warmed_up",
+            "max_daily": 2000,
+            "allow_overflow": 1,
+            "is_primary": 1
+        },
+        "source_ijar_149_56_143_222": {
+            "source_address": "149.56.143.222",
+            "ehlo_domain": "mail.indianjournalofappliedresearch.com",
+            "category": "fully_warmed_up",
+            "max_daily": 2000,
+            "allow_overflow": 1,
+            "is_primary": 1
+        },
+        "source_wwj_51_222_2_242": {
+            "source_address": "51.222.2.242",
+            "ehlo_domain": "mail.worldwidejournals.in",
+            "category": "fully_warmed_up",
+            "max_daily": 2000,
+            "allow_overflow": 0,
+            "is_primary": 1
+        },
+        "source_wwj_51_222_2_243": {
+            "source_address": "51.222.2.243",
+            "ehlo_domain": "mail.worldwidejournals.in",
+            "category": "fully_warmed_up",
+            "max_daily": 2000,
+            "allow_overflow": 0,
+            "is_primary": 1
+        },
+        "source_paripex_51_222_2_238": {
+            "source_address": "51.222.2.238",
+            "ehlo_domain": "mail.paripex.com",
+            "category": "fully_warmed_up",
+            "max_daily": 50,
+            "allow_overflow": 0,
+            "is_primary": 0
+        },
+        "source_paripex_51_222_2_239": {
+            "source_address": "51.222.2.239",
+            "ehlo_domain": "mail.paripex.com",
+            "category": "fully_warmed_up",
+            "max_daily": 50,
+            "allow_overflow": 0,
+            "is_primary": 0
+        },
+        "source_researchandrise_149_56_143_222": {
+            "source_address": "149.56.143.222",
+            "ehlo_domain": "notification.researchandrise.com",
+            "category": "fully_warmed_up",
+            "max_daily": 500,
+            "allow_overflow": 1,
+            "is_primary": 0
+        }
+    },
+    "pools": {
+        "pool_platinum_transactional": [
+            {
+                "name": "source_ipv4_primary",
+                "weight": 100,
+                "category": "platinum_transactional",
+                "max_daily": 5000
+            },
+            {
+                "name": "source_wwj_51_222_2_242",
+                "weight": 80,
+                "category": "platinum_transactional",
+                "max_daily": 5000
+            }
+        ],
+        "pool_academic_platinum": [
+            {
+                "name": "source_ipv4_primary",
+                "weight": 100,
+                "category": "platinum_transactional",
+                "max_daily": 5000
+            },
+            {
+                "name": "source_wwj_51_222_2_242",
+                "weight": 80,
+                "category": "platinum_transactional",
+                "max_daily": 5000
+            }
+        ],
+        "pool_family_paripex": [
+            {
+                "name": "source_paripex_149_56_143_222",
+                "weight": 40,
+                "category": "fully_warmed_up",
+                "max_daily": 2000
+            },
+            {
+                "name": "source_paripex_51_222_2_238",
+                "weight": 100,
+                "category": "fully_warmed_up",
+                "max_daily": 50
+            },
+            {
+                "name": "source_paripex_51_222_2_239",
+                "weight": 100,
+                "category": "fully_warmed_up",
+                "max_daily": 50
+            }
+        ],
+        "pool_family_paripex_fully_warmed_up": [
+            {
+                "name": "source_paripex_149_56_143_222",
+                "weight": 40,
+                "category": "fully_warmed_up",
+                "max_daily": 2000
+            },
+            {
+                "name": "source_paripex_51_222_2_238",
+                "weight": 100,
+                "category": "fully_warmed_up",
+                "max_daily": 50
+            },
+            {
+                "name": "source_paripex_51_222_2_239",
+                "weight": 100,
+                "category": "fully_warmed_up",
+                "max_daily": 50
+            }
+        ],
+        "pool_fully_warmed_up": [
+            {
+                "name": "source_paripex_149_56_143_222",
+                "weight": 40,
+                "category": "fully_warmed_up",
+                "max_daily": 2000
+            },
+            {
+                "name": "source_gjra_149_56_143_222",
+                "weight": 40,
+                "category": "fully_warmed_up",
+                "max_daily": 2000
+            },
+            {
+                "name": "source_ijar_149_56_143_222",
+                "weight": 40,
+                "category": "fully_warmed_up",
+                "max_daily": 2000
+            },
+            {
+                "name": "source_wwj_51_222_2_242",
+                "weight": 40,
+                "category": "fully_warmed_up",
+                "max_daily": 2000
+            },
+            {
+                "name": "source_wwj_51_222_2_243",
+                "weight": 40,
+                "category": "fully_warmed_up",
+                "max_daily": 2000
+            },
+            {
+                "name": "source_paripex_51_222_2_238",
+                "weight": 100,
+                "category": "fully_warmed_up",
+                "max_daily": 50
+            },
+            {
+                "name": "source_paripex_51_222_2_239",
+                "weight": 100,
+                "category": "fully_warmed_up",
+                "max_daily": 50
+            }
+        ],
+        "pool_family_gjra": [
+            {
+                "name": "source_gjra_149_56_143_222",
+                "weight": 40,
+                "category": "fully_warmed_up",
+                "max_daily": 2000
+            }
+        ],
+        "pool_family_gjra_fully_warmed_up": [
+            {
+                "name": "source_gjra_149_56_143_222",
+                "weight": 40,
+                "category": "fully_warmed_up",
+                "max_daily": 2000
+            }
+        ],
+        "pool_family_ijar": [
+            {
+                "name": "source_ijar_149_56_143_222",
+                "weight": 40,
+                "category": "fully_warmed_up",
+                "max_daily": 2000
+            }
+        ],
+        "pool_family_ijar_fully_warmed_up": [
+            {
+                "name": "source_ijar_149_56_143_222",
+                "weight": 40,
+                "category": "fully_warmed_up",
+                "max_daily": 2000
+            }
+        ],
+        "pool_family_wwj": [
+            {
+                "name": "source_wwj_51_222_2_242",
+                "weight": 40,
+                "category": "fully_warmed_up",
+                "max_daily": 2000
+            },
+            {
+                "name": "source_wwj_51_222_2_243",
+                "weight": 40,
+                "category": "fully_warmed_up",
+                "max_daily": 2000
+            }
+        ],
+        "pool_family_wwj_fully_warmed_up": [
+            {
+                "name": "source_wwj_51_222_2_242",
+                "weight": 40,
+                "category": "fully_warmed_up",
+                "max_daily": 2000
+            },
+            {
+                "name": "source_wwj_51_222_2_243",
+                "weight": 40,
+                "category": "fully_warmed_up",
+                "max_daily": 2000
+            }
+        ],
+        "pool_family_researchandrise": [
+            {
+                "name": "source_researchandrise_149_56_143_222",
+                "weight": 1
+            }
+        ],
+        "pool_family_researchandrise_fully_warmed_up": [
+            {
+                "name": "source_researchandrise_149_56_143_222",
+                "weight": 1
+            }
+        ],
+        "pool_family_researchandrise_warming_up": [
+            {
+                "name": "source_researchandrise_149_56_143_222",
+                "weight": 1
+            }
+        ]
+    },
+    "domain_to_family": {
+        "citation.promotejournal.store": "paripex",
+        "editorial.journexa.shop": "paripex",
+        "editorial.reseavix.shop": "paripex",
+        "editorial.theresearchbeacon.store": "paripex",
+        "edu.scirepmedia.shop": "paripex",
+        "education.acadivon.shop": "paripex",
+        "education.manuscriptmarket.shop": "paripex",
+        "education.publivanta.shop": "paripex",
+        "education.scholarreach.store": "paripex",
+        "education.scholivor.site": "paripex",
+        "education.submitready.shop": "paripex",
+        "education.theresearchbeacon.space": "paripex",
+        "edusci.journexa.store": "paripex",
+        "edusci.manuscriptmarket.store": "paripex",
+        "edusci.pubvantage.site": "paripex",
+        "edusci.reseavix.store": "paripex",
+        "email.publishandpromotes.com": "paripex",
+        "hapinessassuring.site": "paripex",
+        "hunterofthesoul.co.uk": "paripex",
+        "ijasr.life": "paripex",
+        "journals.publisera.site": "paripex",
+        "journals.scholentra.site": "paripex",
+        "mail.whitefalconpublishing.co.in": "paripex",
+        "manu.manuscriptmarket.site": "paripex",
+        "medico.publisera.store": "paripex",
+        "medico.scholentra.store": "paripex",
+        "memuna.shop": "paripex",
+        "minjumboi.com": "paripex",
+        "nanciepublication.online": "paripex",
+        "notification.acadivon.store": "paripex",
+        "notification.promotejournal.shop": "paripex",
+        "notification.pubgrowth.online": "paripex",
+        "notification.publivanta.store": "paripex",
+        "notification.scholivora.space": "paripex",
+        "notify.submitready.site": "paripex",
+        "osmaniahunk.info": "paripex",
+        "mail.paripex.com": "paripex",
+        "pratikchaurasiya.online": "paripex",
+        "promotion.promotejournal.site": "paripex",
+        "publication.acadivon.site": "paripex",
+        "publication.pubgrowth.store": "paripex",
+        "publication.publivanta.site": "paripex",
+        "publication.scholivora.site": "paripex",
+        "publish.publisera.shop": "paripex",
+        "publish.scholentra.shop": "paripex",
+        "publish.submitready.store": "paripex",
+        "research.journexa.site": "paripex",
+        "research.reseavix.site": "paripex",
+        "researcher.scholarreach.space": "paripex",
+        "researchjournalpublication.info": "paripex",
+        "sarapublication.com": "paripex",
+        "sarapublishingacademy.email": "paripex",
+        "sci.scirepmedia.site": "paripex",
+        "study.scirepmedia.store": "paripex",
+        "teatablespoon.com": "paripex",
+        "yellowdiamond.co.in": "paripex",
+        "worldwidejournals.org.in": "wwj",
+        "submission.worldwidejournals.org": "wwj",
+        "submission.worldwidejournals.co.in": "wwj",
+        "submission.worldwidejournals.org.in": "wwj",
+        "worldwidejournals.org": "wwj",
+        "worldwidejournals.co.in": "wwj",
+        "gjra.in": "gjra",
+        "globaljournalforresearchanalysis.com": "gjra",
+        "mail.indianjournalofappliedresearch.com": "ijar",
+        "mail.worldwidejournals.in": "wwj",
+        "mail.gjra.in": "gjra",
+        "notification.researchandrise.com": "researchandrise",
+        "researchandrise.com": "researchandrise"
+    },
+    "verified_domains": [
+        "citation.promotejournal.store",
+        "editorial.journexa.shop",
+        "editorial.reseavix.shop",
+        "editorial.theresearchbeacon.store",
+        "edu.scirepmedia.shop",
+        "education.acadivon.shop",
+        "education.manuscriptmarket.shop",
+        "education.publivanta.shop",
+        "education.scholarreach.store",
+        "education.scholivor.site",
+        "education.submitready.shop",
+        "education.theresearchbeacon.space",
+        "edusci.journexa.store",
+        "edusci.manuscriptmarket.store",
+        "edusci.pubvantage.site",
+        "edusci.reseavix.store",
+        "email.publishandpromotes.com",
+        "hapinessassuring.site",
+        "hunterofthesoul.co.uk",
+        "ijasr.life",
+        "journals.publisera.site",
+        "journals.scholentra.site",
+        "mail.whitefalconpublishing.co.in",
+        "manu.manuscriptmarket.site",
+        "medico.publisera.store",
+        "medico.scholentra.store",
+        "memuna.shop",
+        "minjumboi.com",
+        "nanciepublication.online",
+        "notification.acadivon.store",
+        "notification.promotejournal.shop",
+        "notification.pubgrowth.online",
+        "notification.publivanta.store",
+        "notification.scholivora.space",
+        "notify.submitready.site",
+        "osmaniahunk.info",
+        "mail.paripex.com",
+        "pratikchaurasiya.online",
+        "promotion.promotejournal.site",
+        "publication.acadivon.site",
+        "publication.pubgrowth.store",
+        "publication.publivanta.site",
+        "publication.scholivora.site",
+        "publish.publisera.shop",
+        "publish.scholentra.shop",
+        "publish.submitready.store",
+        "research.journexa.site",
+        "research.reseavix.site",
+        "researcher.scholarreach.space",
+        "researchjournalpublication.info",
+        "sarapublication.com",
+        "sarapublishingacademy.email",
+        "sci.scirepmedia.site",
+        "study.scirepmedia.store",
+        "teatablespoon.com",
+        "yellowdiamond.co.in",
+        "worldwidejournals.org.in",
+        "submission.worldwidejournals.org",
+        "submission.worldwidejournals.co.in",
+        "submission.worldwidejournals.org.in",
+        "worldwidejournals.org",
+        "worldwidejournals.co.in",
+        "gjra.in",
+        "globaljournalforresearchanalysis.com",
+        "mail.indianjournalofappliedresearch.com",
+        "mail.worldwidejournals.in",
+        "mail.gjra.in",
+        "notification.researchandrise.com"
+    ]
+}
